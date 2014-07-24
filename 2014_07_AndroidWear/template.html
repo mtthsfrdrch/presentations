@@ -365,7 +365,7 @@ URL: https://code.google.com/p/io-2012-slides
       </section>
     </aside>
     <hgroup>
-      <h2>Notifications</h2>
+      <h2>Notifications (just as usual)</h2>
     </hgroup>
     <article>
           <pre class="prettyprint" data-lang="java">
@@ -469,24 +469,24 @@ notificationManager.notify(notificationId, twoPagesNotification);
     <article>
     <pre class="prettyprint" data-lang="java">
 
-
 // Create intent for reply action
 Intent replyIntent = new Intent(this, ReplyActivity.class);
 PendingIntent replyPendingIntent =
         PendingIntent.getActivity(this, 0, replyIntent, 0);
 
+// Key for the string that's delivered in the action's intent
+private static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 
-// Build the notification
-NotificationCompat.Builder replyNotificationBuilder =
-        new NotificationCompat.Builder(this)
-        .setSmallIcon(R.drawable.ic_new_message)
-        .setContentTitle("Message from Travis")
-        .setContentText("I love key lime pie!")
-        .setContentIntent(replyPendingIntent);
+String replyLabel = getResources().getString(R.string.reply_label);
+String[] replyChoices = getResources().
+    getStringArray(R.array.reply_choices);
 
+RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+        .setLabel(replyLabel).setChoices(replyChoices)
+        .build();
     </pre>
     <img style="position: absolute; width:150px; right: 100px; top: 180px" src="images/action_0.png">
-    <img style="position: absolute; width:150px; right: 100px; top: 370px" src="images/action_1.png">
+    <img style="position: absolute; width:150px; right: 100px; top: 370px" src="images/choices.png">
   </article>
   </slide>
 
@@ -496,19 +496,19 @@ NotificationCompat.Builder replyNotificationBuilder =
     </hgroup>
     <article>
     <pre class="prettyprint" data-lang="java">
+// Create the reply action and add the remote input
+NotificationCompat.Action action =
+        new NotificationCompat.Action.Builder(R.drawable.ic_reply_icon,
+                getString(R.string.label, replyPendingIntent))
+                .addRemoteInput(remoteInput)
+                .build();
 
-
-// Create the remote input
-RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
-        .setLabel(replyLabel).build();
-
-
-// Create wearable notification and add remote input
-Notification replyNotification =
-        new WearableNotifications.Builder(replyNotificationBuilder)
-        .addRemoteInputForContentIntent(remoteInput)
-        .build();
-
+// Build the notification and add the action via WearableExtender
+Notification notification =
+        new NotificationCompat.Builder(mContext)
+                ...
+                .extend(new WearableExtender().addAction(action))
+                .build();
 
     </pre>
     <img style="position: absolute; width:150px; right: 100px; top: 180px" src="images/action_0.png">
