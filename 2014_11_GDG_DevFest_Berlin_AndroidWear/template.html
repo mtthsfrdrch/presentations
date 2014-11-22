@@ -1,0 +1,987 @@
+<!--
+Slides were created by GDG Bremen Members. 
+
+It uses the Google IO 2013 HTML5 Slides:
+
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Android as it gets worn</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-2.1.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img id="front_logo" src="images/devfest_berlin/devfest_berlin.jpg"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/devfest_berlin/devfest_berlin_logo.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+	  <p data-config-contact-dark></p>
+
+    <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); width:130px; position: absolute; left: 680px; top:-40px" src="images/aw_logo.jpg">
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>as you can see i'm quiete enthuasiastic about Android</li>
+          <li>Android Developer @ Jimdo (startup from Hamburg)</li>
+          <li>as i like to help to exchange knowledge and expieriences, i founded 2 od all these 500 GDGs</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      
+    </hgroup>
+    <article>
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 130px; top: 70px" src="images/cape.jpg">
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 480px; top: 155px; width: 150px" src="images/GDG_Bremen.png">
+            <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 660px; top: 130px; width: 250px" src="images/devfest_berlin/GDG_Android_Hamburg_280_square.png">
+      <br>
+      <br>
+      <ul style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 440px; top: 320px" src="images/cape.jpg">
+        <li><b>Matthias Friedrich</b></li>
+        <li>Android Developer @ Jimdo</li>
+        <li>Java Developer</li>
+        <li>Cofounder/-organizer<br> GDG Bremen/GDG Hamburg Android</li>
+        <li><a href="http://twitter.com/peacei">@peacei</a><li>
+        <li><a href="http://google.com/+MatthiasFriedrich">google.com/+MatthiasFriedrich</a></li>
+      </ul>
+  </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/jimdo_mobile.jpg)">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- photo taken a few months ago</li>
+          <li>- awesome how mobile changed our lives in the last years
+          <li>- always immediately see all the information that gets thrown at us</li>
+          <li>- negative side to it:</li>
+          <li>- when a notification comes in: you don't read just the message,<br>
+            what you do is you go to other apps, check all the news there, although they are not important<br>
+            at that specific moment<li>
+          <li>- you get dragged in</li>
+          <li>- thats where Android Wear wants to improve our lifes</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2 class="white">The Jimdo Mobile team at lunch...</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/time.png)">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- people get dragged into it</li>
+          <li>- they are there but absent</li>
+          <li>- with wearables you directly see a small piece of information</li>
+          <li>- take a short look, decide if you care about it and move on,
+          <li>- so you don't get dragged in that easy</li>
+          <li>- and can more interact with your environment</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2 class="white">Use technologie but get it out of the way!</h2>
+    </hgroup>
+  </slide>
+
+  <!-- <slide>
+    <hgroup>
+      <h2>SmartWatches so far...</h2>
+    </hgroup>
+    <article>
+    <img  style="position: absolute; width:350px; left: 60px; top: 200px" src="images/galaxygear.jpeg" />
+    <img  style="position: absolute; width:440px; left: 540px; top: 0px" src="images/sonySW2.jpg" />
+    <img  style="position: absolute; width:410px; left: 550px; top: 380px" src="images/pebble.jpg" />
+    </article>
+  </slide> -->
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- compare more</li>
+          <li>- This is the app experience on your phone</li>
+          <li>- We’ve trained users to collect all these shiny objects and
+            search for them when they want to do something.</li>
+          <li>Which works fine on a phone.</li>
+          <li>- But if we…</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:326px; left: 385px; top: 60px" src="images/phone_appgrid.png" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- …just put the same shiny objects on a wearable device -> it would suck</li>
+          <li>- it’d be to time consuming</li>
+          <li>- on a device intended to reduce interaction with technology.</li>
+          <li>- It just doesn’t make sense.</li>
+          <li>- How do we get outside of this paradigm?</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img  style="position: absolute; width:326px; left: 170px; top: 60px" src="images/phone_appgrid.png" />
+      <img  style="position: absolute; width:300px; left: 620px; top: 260px" src="images/wear_appgrid.png" />
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- by doing a substantially different approach to UI and UX</li>
+          <li>- completely new UI</li>
+          <li>- round & square</li>
+          <li>- build exactly for small pieces of information</li>
+          <li>- and micro interactions</li>
+          <li>- the interface has basically 2 main entry points</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Android Wear</h2>
+    </hgroup>
+    <article>
+    <img  style="position: absolute; width:250px; left: 80px; top: 120px" src="images/square.png" />
+    <img  style="position: absolute; width:184px; left: 113px; top: 154px" src="images/reservation_animated.gif" />
+    <img  style="position: absolute; width:250px; left: 400px; top: 120px" src="images/msg.png" />
+    <img  style="position: absolute; width:250px; left: 720px; top: 120px" src="images/fitness.png" />
+
+
+    <img  style="position: absolute; width:250px; left: 80px; top: 390px" src="images/reply.png" />
+    
+    <img  style="position: absolute; width:250px; left: 400px; top: 390px" src="images/square.png" />
+    <img  style="position: absolute; width:184px; left: 433px; top: 424px" src="images/pages_animated.gif" />
+    <img  style="position: absolute; width:250px; left: 720px; top: 390px" src="images/stack.png" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- vertical list of cards</li>
+          <li>- each showing one piece of information, contextual </li>
+          <li>- vertical swipe changes card, right swipe goes into one card, left swipe dismisses it</li>
+          <li>- photos as backgrounds to give a visual impression about the content they show</li>
+          <li>- ideally you don't open apps, but just glance at the screen to see some piece of important information</li>
+          <li>- "You can think of it like enhanced notifications that matter to the user right now<br>
+            because it's the right time or place to read them"</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>The Context Stream</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>list of cards</li>
+        <li>navigation vertically</li>
+        <li>interaction horizontally</li>
+      </ul>
+      <ul>
+        <li>contextual, glancable information (-> Google Now)</li>
+        <li>Notifications (-> from apps running on your phone)</li>
+      </ul>
+
+    <img style="position: absolute; width:250px; left: 720px; top: 120px" src="images/square.png" />
+    <img style="position: absolute; width:184px; left: 753px; top: 154px" src="images/stream.gif" />
+
+
+    <img style="position: absolute; width:250px; left: 720px; top: 390px" src="images/square.png" />
+    <img style="position: absolute; width:184px; left: 753px; top: 424px" src="images/pages_animated.gif" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- think of it as the App Launcher</li>
+          <li>- no Grid of App icons</li>
+          <li>- instead say what you want to do, voice action triggers intent</li>
+          <br>
+          <li>- list of Apps (hidden, secondary)</li>
+          <br>
+          <li>- Keep these two entry points in mind when you think about doing your own Wear app</li>
+          <li>- because just taking the same approach as on a phone doesn't work here!</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>The Cue Card ("Launcher")</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>activation by "OK Google"<br> or tapping the watchface</li>
+        <li>Voice Actions</li>
+        <li>shows list of suggested Actions</li>
+        <li>f.e. "Take a note"
+      </ul>
+      <ul>
+        <li>each Action triggers an Intent</li>
+        <li>apps can react to Intents just as usual<br> using IntentFilters</li>
+      </ul>
+      <ul>
+        <li>Explicit Intents, f.e. "OK Google Start AppXY" </li>
+        <li>Implicit Intents, f.e. "OK Google Take a Note"
+      </ul>
+
+    <img  style="position: absolute; width:250px; left: 720px; top: 120px" src="images/square.png" />
+    <img  style="position: absolute; width:184px; left: 753px; top: 154px" src="images/cuecard.gif" />
+
+
+    <img  style="position: absolute; width:250px; left: 720px; top: 390px" src="images/square.png" />
+    <img  style="position: absolute; width:184px; left: 753px; top: 424px" src="images/reservation_animated.gif" />
+    </article>
+  </slide>
+
+  <!-- OPTIONAL -->
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- Android Wear technically</li>
+          <li>- same OS, use same APIs, use same Tools</li>
+          <li>- but with some small differences</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Android Wear</h2>
+    </hgroup>
+    <article>
+    <p>
+      <div>
+      <ul>
+        <li>basically the same OS, same Apis, same tools</li>
+        <li>Android 4.4W.2</li>
+        <li>SDK lvl 20</li>
+      </ul>
+      </div>
+      <div class="build" style="position: absolute; left: 60px; top: 300px">
+        <div>
+        <p><b>missing packages/Apis:</b></p>
+      <ul>
+        <li style="text-decoration: line-through">android.webkit</li>
+        <li style="text-decoration: line-through">android.print</li>
+        <li style="text-decoration: line-through">android.app.backup</li>
+        <li style="text-decoration: line-through">android.appwidget</li>
+        <li style="text-decoration: line-through">android.hardware.usb</li>
+      </ul>
+        </div>
+      </div>
+      <div class="build" style="position: absolute; left: 480px; top: 300px"><div>
+        <p><b>but it still has:</b></p>
+      <ul>
+        <li>android.location</li>
+        <li>android.net.wifi</li>
+        <li>android.hardware.SensorManager</li>
+        <li>android.hardware.Camera</li>
+      </ul>
+    </div></div>
+    </p>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- Play Services synchronize apps and notifications</li>
+
+          <li>- default apps that get used on Voice Actions</li>
+          <li>- watch settings like: activate debugging via bluetooth or if calendar events get shown</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Android Wear Companion App</h2>
+    </hgroup>
+    <article>
+    <p>
+      <ul>
+        <li>at least Android 4.3</li>
+        <li>at least Google Play Services 5.0 (Wearable Services)</li>
+      </ul>
+      <ul>
+        <li>reads notifications and pushes them<br> to the wearable device</li>
+        <li>syncs wearable apps to the watch</li>
+      </ul>
+      <ul>
+        <li>define default apps for intents/voice actions</li>
+        <li>other watch settings</li>
+      </ul>
+      <img  style="position: absolute; width:340px; left: 730px; top: 50px" src="images/wear_app2.png" />
+    </p>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- development side</li>
+          <li>- how do you do notifications for Android Wear?</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/aw.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Notifications</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Notifications work just as usual</li>
+          <li>Per default...</li>
+          <li>...all the notifications and its actions...</li>
+          <li>...so when you do notifications, you support Android Wear already</li>
+          <li>NotificationCompat</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Notifications (just as usual)</h2>
+    </hgroup>
+    <article>
+          <pre class="prettyprint" data-lang="java">
+// create notification using a builder
+NotificationCompat.Builder notificationBuilder =
+        new NotificationCompat.Builder(this)
+        .setContentTitle("Title")
+        .setContentText("Short message")
+        .setContextIntent(pendingIntent) ...;
+    </pre>
+
+    <pre class="prettyprint" data-lang="java">
+// add a action to show on Phone and Wearable
+notificationBuilder =
+        .addAction(iconRes, "ActionTitle", pendingIntentAction1);
+    </pre>
+
+    <pre class="prettyprint" data-lang="java">
+// show the notification
+notificationManager.notify(notificationId, notificationBuilder.build());  
+    </pre>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>... but of course, you can do some adjustments...</li>
+          <li>- show a action just on the wearable</li>
+          <li>- show a notification just on the phone</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>... with adjustments for Wearables</h2>
+    </hgroup>
+    <article>
+          <pre class="prettyprint" data-lang="java">
+// create the Wearable action
+NotificationCompat.Action wearableAction =
+        new NotificationCompat.Action.Builder(iconRes,
+                "WearableActionTitle", pendingIntentAction2))
+                .build();
+    </pre>
+
+    <pre class="prettyprint" data-lang="java">
+// wrap the Action in a WearableExtender
+.extend(new WearableExtender().addAction(wearableAction))
+    </pre>
+
+    <pre class="prettyprint" data-lang="java">
+// show the notification just on the Phone
+notificationBuilder.setLocalOnly(true);  
+    </pre>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>... another thing</li>
+          <li>- is to add pages</li>
+          <li>- show additional information</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Notification - Pages</h2>
+    </hgroup>
+    <article>
+    <pre class="prettyprint" data-lang="java">
+// Create second page notification
+Notification secondPageNotification =
+        new NotificationCompat.Builder(this)
+        .setContentText("2nd Page Text")... .build();
+
+// Wrap second page in WearableExtender and extend
+// the main notification
+Notification twoPagesNotification =
+        new WearableExtender()
+                .addPage(secondPageNotification)
+                .extend(notificationBuilder)
+                .build();
+
+notificationManager.notify(notificationId, twoPagesNotification);
+    </pre>
+    <img style="position: absolute; width:150px; right: 100px; top: 180px" src="images/pages_0.png">
+    <img style="position: absolute; width:150px; right: 100px; top: 370px" src="images/pages_1.png">
+  </article>
+  </slide>
+
+  <slide hidden>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>as you know, can show several notifications of the same kind... </li>
+          <li>there is nothing special needed for this</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Notification - Stacks</h2>
+    </hgroup>
+    <article>
+    <img style="position: absolute; width:500px; left: 100px; top: 130px" src="images/stack_phone.png">
+    <img style="position: absolute; width:320px; right: 100px; top: 130px" src="images/stack_wear.png">
+    <img style="position: absolute; width:320px; right: 100px; top: 380px" src="images/stack2_wear.png">
+  </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Notification - Actions with VoiceInput</h2>
+    </hgroup>
+    <article>
+    <pre class="prettyprint" data-lang="java">
+
+// Create intent for reply action
+Intent replyIntent = new Intent(this, ReplyActivity.class);
+PendingIntent replyPendingIntent =
+        PendingIntent.getActivity(this, 0, replyIntent, 0);
+
+// Key for the string that's delivered in the action's intent
+private static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
+
+String replyLabel = getResources().getString(R.string.reply_label);
+String[] replyChoices = getResources().
+    getStringArray(R.array.reply_choices);
+
+RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+        .setLabel(replyLabel).setChoices(replyChoices)
+        .build();
+    </pre>
+    <img style="position: absolute; width:150px; right: 100px; top: 180px" src="images/action_0.png">
+    <img style="position: absolute; width:150px; right: 100px; top: 370px" src="images/choices.png">
+  </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Notification - Actions with VoiceInput</h2>
+    </hgroup>
+    <article>
+    <pre class="prettyprint" data-lang="java">
+// Create the reply action and add the remote input
+NotificationCompat.Action action =
+        new NotificationCompat.Action.Builder(R.drawable.ic_reply_icon,
+                getString(R.string.label, replyPendingIntent))
+                .addRemoteInput(remoteInput)
+                .build();
+
+// Build the notification and add the action via WearableExtender
+Notification notification =
+        new NotificationCompat.Builder(mContext)
+                ...
+                .extend(new WearableExtender().addAction(action))
+                .build();
+
+    </pre>
+    <img style="position: absolute; width:150px; right: 100px; top: 180px" src="images/action_0.png">
+    <img style="position: absolute; width:150px; right: 100px; top: 370px" src="images/action_1.png">
+  </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>WearableExtender</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+    <p>
+      <ul>
+        <li><b style="color: green">com.android.support:support-v4:20.+ </b>
+          <ul>
+            <li>- WearableExtender</li>
+            <li>- NotificationCompat</li>
+          </ul>
+        </li>
+        
+      </ul>
+    </p>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>lets have a look... how to make full fledge apps on wear talk with your phone</li>
+          <li>because android wear usually has no direct network connection</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/aw.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Connection and Synchronisation</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>bascially 3 apis</li>
+          <li> Node API, identify devices</li>
+          <li> Messages API, f.e. request data from the phone</li>
+          <li> Data API, f.e. send the data to the phone</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+     <ul>
+      <li><b style="color: green">Node API</b>
+        <ul>
+          <li>tells you when devices get<br> connected/disconnected</li>
+        </ul>
+      </li>
+     </ul>
+
+     <ul>
+      <li><b style="color: green">Messages API</b>
+        <ul>
+          <li>"Fire-&-Forget" commands</li>
+          <li>deliver Intents or MediaPlayer commands</li>
+        </ul>    
+      </li>
+     </ul>
+
+     <ul>
+      <li><b style="color: green">Data API</b>
+        <ul>
+          <li>automatic data sync between devices</li>
+          <li>send binary blobs of data (f.e. images)</li>
+          <li>automatic caching to avoid repeated<br> transfers over bluetooth</li>
+        </ul>    
+      </li>
+     </ul>
+  </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+          
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:800px; left: 150px; top: 70px" src="images/playsync.png">
+    <p>
+      <ul style="position: absolute; width:800px; top: 400px">
+        <li><b style="color: green">com.google.android.gms:play-services:+ (5.0 and above)</b>
+        <ul>
+          <li>provides Wearable Service APIs to sync data between the Phone and the Wearable</li>
+          <li>separately available as: <b style="color: green">com.google.android.gms:play-services-wearable:+</b></li>
+        </ul>
+        </li>
+      </ul>
+    </p>
+    
+  </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li></li>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/aw.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Wearable UI</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h3>android.support.wearable.view</h3>
+      <h2>BoxInsetLayout</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:700px; right: 200px; top: 220px" src="images/boxinsetlayout.png"> 
+   </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h3>android.support.wearable.view</h3>
+      <h2>WearableListView</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:450px; right: 330px; top: 220px" src="images/listview.png"> 
+   </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h3>android.support.wearable.view</h3>
+      <h2>DelayedConfirmationView</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:350px; right: 400px; top: 220px" src="images/cancel.png"> 
+   </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h3>android.support.wearable.activity</h3>
+      <h2>ConfirmationActivity</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:300px; left: 65px; top: 220px" src="images/square.png" />
+     <img style="position: absolute; width:220px; left: 104px; top: 260px" src="images/success.gif">
+     
+     <img style="position: absolute; width:300px; left: 400px; top: 220px" src="images/square.png" />
+     <img style="position: absolute; width:220px; left: 439px; top: 260px" src="images/open_on_phone.gif">
+     
+     <img style="position: absolute; width:300px; left: 730px; top: 220px" src="images/square.png" />
+     <img style="position: absolute; width:220px; left: 769px; top: 260px" src="images/error.gif"> 
+   </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h3>android.support.wearable.view</h3>
+      <h2>CardFragment</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:330px; left: 380px; top: 220px" src="images/pages_1.png"> 
+   </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h3>android.support.wearable.view</h3>
+      <h2>GridViewPager & FragmentGridPagerAdapter</h2>
+    </hgroup>
+    <article>
+     <img style="position: absolute; width:380px; left: 350px; top: 220px" src="images/square.png" />
+    <img style="position: absolute; width:284px; left: 398px; top: 270px" src="images/stream.gif" /> 
+   </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+          
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <ul>
+          <li>WearableListView</li>
+          <li>CircledImageView</li>
+          <li>DelayedConfirmationView</li>
+          <li>DismissOverlayView</li>
+          <li>WatchViewStub</li>
+        </ul>
+        <br><br><br>
+    <p>
+      <ul>
+        <li><b style="color: green">com.google.android.support:wearable:+</b> (unofficial)</li>
+      </ul>
+    </p>
+    <!-- <img style="position: absolute; width:800px; left: 300px; top: 270px" src="images/androidwear.png"> -->
+  </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>...</li>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/aw.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">d.android.com/wear</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>...</li>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/aw.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Devices</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:330px; left: 120px; top: 200px" src="images/g_watch.jpg"/>
+      <img style="position: absolute; width:330px; left: 580px; top: 200px" src="images/gear_live.jpg"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:450px; left: 360px; top: 165px" src="images/moto360.gif"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:350px; left: 70px; top: 200px" src="images/g_watch_r.jpg"/>
+      <img style="position: absolute; width:330px; left: 390px; top: 320px" src="images/sw_3.jpg"/>
+      <img style="position: absolute; width:210px; left: 730px; top: 200px" src="images/zenwatch.png"/>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/partners.png)">
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>...</li>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar"><img src="images/lollipop.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Lollipop Wear ?</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rumor mill: December 2014</h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:400px; left: 100px; top: 100px" src="images/lolliwear.jpg"/>
+      <div style="position: absolute; left: 550px; top: 280px"><div>
+        <p><b>known so far:</b></p>
+      <ul>
+        <li>new Watchfaces</li>
+        <li>official Watchface API</li>
+        <li>ui improvements</li>
+        <li>way more watch settings</li>
+      </ul>
+    </div></div>
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>R: "OK Google Start Camera"</h2>
+    </hgroup>
+    <article>
+
+      <img  style="position: absolute; width:300px; left: 100px; top: 350px" src="images/camera_wear.png" />
+      <img  style="position: absolute; width:500px; left: 520px; top: 60px" src="images/camera_phone.png" />
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Wear Camera Remote: "OK Google Start Camera"</h2>
+    </hgroup>
+    <article>
+
+      <img  style="position: absolute; width:300px; left: 100px; top: 350px" src="images/camera_wear.png" />
+      <img  style="position: absolute; width:500px; left: 520px; top: 60px" src="images/camera_phone.png" />
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Google Keep: "OK Google Take a Note"</h2>
+    </hgroup>
+    <article>
+
+      <img  style="position: absolute; width:300px; left: 60px; top: 350px" src="images/note_wear.png" />
+      <img  style="position: absolute; width:300px; left: 300px; top: 350px" src="images/note_wear2.png" />
+      <img  style="position: absolute; width:500px; left: 520px; top: 60px" src="images/note_phone.png" />
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Google Music</h2>
+    </hgroup>
+    <article>
+
+      <img  style="position: absolute; width:300px; left: 60px; top: 150px" src="images/music_0.png" />
+      <img  style="position: absolute; width:300px; left: 60px; top: 380px" src="images/music_1.png" />
+      <img  style="position: absolute; width:300px; left: 300px; top: 380px" src="images/music_2.png" />
+      <img  style="position: absolute; width:500px; left: 520px; top: 60px" src="images/music_phone.png" />
+    </article>
+  </slide>  
+
+  <slide class="thank-you-slide segue nobackground">
+    <!-- <aside class="gdbar right"><img src="images/gdg-bremen/GDG_Bremen_Q4.png"></aside> -->
+    <aside class="gdbar right"><img src="images/devfest_berlin/devfest_berlin_logo.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thanx!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/devfest_berlin/devfest_berlin.jpg"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script> -->
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
