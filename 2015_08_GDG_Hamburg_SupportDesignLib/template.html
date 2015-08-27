@@ -1,0 +1,1050 @@
+<!--
+Slides were created by GDG Bremen Members. 
+
+It uses the Google IO 2013 HTML5 Slides:
+
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Android Design Support Library</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-2.1.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img id="front_logo" src="images/gdg-hamburg-android/GDG_Android Hamburg_800.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/gdg-hamburg-android/GDG_Android Hamburg_280_square.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+	  <p data-config-contact-dark></p>
+    
+    </hgroup>
+  </slide>
+
+  <!-- <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>thats me, in my Google I/O cameo outfit</li>
+          <li>as you can see i'm quiete enthuasiastic about Android</li>
+          <li>Android Developer @ Jimdo</li>
+          <li>founded... </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      
+    </hgroup>
+    <article>
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 130px; top: 70px" src="images/cape.jpg">
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 480px; top: 155px; width: 150px" src="images/GDG_Bremen.png">
+            <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 660px; top: 130px; width: 250px" src="images/gdg-hamburg-android/GDG_Hamburg_500_square.png">
+      <br>
+      <br>
+      <ul style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 440px; top: 320px" src="images/cape.jpg">
+        <li><b>Matthias Friedrich</b></li>
+        <li>Android Developer @ Jimdo</li>
+        <li>Java Developer</li>
+        <li>Cofounder/-organizer<br> GDG Bremen/GDG Hamburg Android</li>
+        <li><a href="http://twitter.com/peacei">@mtthsfrdrch</a><li>
+        <li><a href="http://google.com/+MatthiasFriedrich">google.com/+MatthiasFriedrich</a></li>
+      </ul>
+  </article>
+  </slide> -->
+
+  <slide class="segue fill nobackground" style="background-image: url(images/material.jpg)">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- a lot of guidelines</li>
+          <li>- no default implementations</li>
+          <li>- goal: consistent ui widgets</li>
+          <li>- understand core principles how material design works on Android</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:#BF360C">Material Design</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- define colors once, Android applies them everywhere</li>
+          <li>- since Lollipop, </li>
+          <li>- AppCompat SDK 7 (for the most used Widgets)</li>
+          <li>- AppCompat does crazy stuff in the background, coloring can get tricky</li>
+          <li>- use theme colors in layout and code</li>
+          <li>- no nice way to get hold of theme colors in code, recommend...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MATERIAL BASICS: Theming (SDK 7+)</h2>
+    </hgroup>
+    <article>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="style.xml">
+        &lt;style name="AppTheme" parent="Theme.AppCompat.Light"&gt;
+          &lt;item name="colorPrimary"&gt;#424242&lt;/item&gt;
+          &lt;item name="colorAccent">#32a5ff&lt;/item&gt;
+          ...</pre>  
+      </p></div></div>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;View
+          android:background="?colorPrimary"
+          ...</pre>  
+      </p></div></div>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="java">
+        public static int getThemeColor(Context context, int attributeId) {
+          TypedValue tv = new TypedValue();
+          context.getTheme().resolveAttribute(attributeId, tv, true);
+          return tv.data;
+        }
+
+        int primaryColor = getThemeColor(this, R.attr.colorPrimary);</pre>  
+      </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- apply colors to Drawables via Alpha mask</li>
+          <li>- always use white Drawables, apply tint</li>
+          <li>- via layout or code</li>
+          <li>- apply different alpha masks via tintmode</li>
+          <li>- setColorFilter(PorterDuff.Mode.MERGE)</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MATERIAL BASICS: Ui tinting (SDK 7+)</h2>
+    </hgroup>
+    <article>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        // SDK 21+ only
+        &lt;ImageView
+          android:tint="?colorAccent"
+          ...</pre>
+        </p></div></div>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="java">
+        // SDK 21+ 
+        Drawable drawable = context.getResources.getDrawable(
+          R.drawable.background, context.getTheme());
+        drawable.setTint(primaryColor);</pre>
+        </p></div></div>
+      <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="java">
+        // below SDK 21
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.background);
+        DrawableCompat.wrap(drawable).setTint(primaryColor);
+        // or
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.background);
+        drawable.setColorFilter(primaryColor, PorterDuff.Mode.MERGE);</pre>  
+      </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- System provides realtime shadows</li>
+          <li>- based on z lvl and current position</li>
+          <li>- drawn by the parent View</li>
+          <li>- uses OutlineProvider, default: background</li>
+          <li>- set elevation form layout or code</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MATERIAL BASICS: Elevation (SDK 21+)</h2>
+    </hgroup>
+    <article>
+      <img  style="position: absolute; width:700px; left: 60px; top: 100px" src="images/elevation.png" />
+      <div style="position: absolute; top: 390px; width:980px;"><div><p class="build">
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;View
+          android:elevation="8dp"
+          android:outlineProvider="bounds"
+          ...</pre>
+        </p></div></div>
+      <div style="position: absolute; top: 540px; width:980px;"><div><p class="build">
+        <pre class="prettyprint" data-lang="java">
+        view.setElevation(8);
+        view.setOutlineProvider(ViewOutlineProvider.BOUNDS);</pre>  
+      </p></div></div>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>lets have a look... at what we are really here for</li>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Design Support Library</h2>
+    </hgroup>
+     <img  style="position: absolute; width:300px; left: 600px; top: 220px" src="images/designlib/textinputlayout.png" />
+     <img  style="position: absolute; width:300px; left: 100px; top: 40px" src="images/designlib/drawer.png" />
+     <img  style="position: absolute; width:300px; left: 600px; top: 120px" src="images/designlib/tabs.png" />
+     <img  style="position: absolute; width:250px; right: 80px; top: 500px" src="images/designlib/fab.png" />
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- obligatory dependency identifier</li>
+          <li>- comes with AppCompat ( -> V4Support)</li>
+          <li>- 6 major UI Components</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Design Support Library</h2>
+    </hgroup>
+    <article>
+      <p>
+        <pre class="prettyprint" data-lang="build.gradle">
+        dependencies {
+          compile 'com.android.support:design:23.0.0'
+          ...</pre>  
+      </p>
+      <br>
+      <ul>
+        <li>SDK 7+</li>
+      </ul>
+      <div class="build"><ul>
+        <li>TabLayout</li>
+        <li>TextInputLayout</li>
+        <li>SnackBar</li>
+        <li>FloatingActionButton</li>
+        <li>NavigationView</li>
+        <li>CoordinatorLayout
+          <ul>
+            <li>AppBarLayout</li>
+            <li>CollapsingToolbarLayout</li>
+          </ul>  
+        </li>
+      </ul></div>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- classical tabbed indicator widget</li>
+          <li>- to be used with ViewPager</li>
+          <li>- easy to set up, no need to add tabs or listeners manually
+          <li>- setupWithViewPager(...)</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.TabLayout</h2>
+    </hgroup>
+    <article>
+    <img style="position: absolute; width:450px; right: 200px; top: 400px" src="images/designlib/tab_layout_frame.png" />
+    <p>
+      <ul>
+        <li>classical tabbed indicator widget</li>
+        <li>easy configuration</li>
+        <li>no need to setup tabs or listeners</li>
+    <div class="build"><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        TabLayout tabLayout =
+            (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);</pre>
+        </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- custom layout attributes (tab background/indicator colors) 
+          <li>- has several modes and gravities</li>
+          <li>- implements touch ripples</li>
+          <li></li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.TabLayout</h2>
+    </hgroup>
+    <article>
+    <div class="build">
+      <img style="position: absolute; width:500px; left: 370px; top: 270px" src="images/designlib/tab_layout_modes.png" />
+    </div>
+    <div style="position: absolute; width:980px; top: 75px"><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;android.support.design.widget.TabLayout
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          app:tabGravity="fill"
+          app:tabMode="fixed"
+          ...</pre>
+        </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- provides hint & error animations</li>
+          <li>- gets tinted with theme colors</li>
+          <li>- doesn't do a lot, but i LOVE it :D</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.TextInputLayout</h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:350px; left: 100px; top: 120px" src="images/designlib/textinput.gif" />
+      <img style="position: absolute; width:350px; right: 200px; top: 120px" src="images/designlib/textinput_error.gif" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- Wrapped EditText</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.TextInputLayout</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;android.support.design.widget.TextInputLayout
+            android:hint="@string/hint_email"
+            app:hintTextAppearance="@style/TextAppearance.Design.Hint"
+            app:hintAnimationEnabled="true"
+            app:errorTextAppearance="@style/TextAppearance.Design.Error"
+            app:errorEnabled="true" ... &gt;
+          &lt;EditText ... /&gt;
+        &lt;/android.support.design.widget.TextInputLayout&gt;</pre>
+        </p></div></div>
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- the famuos FAB</li>
+          <li>- provides hint & error animations</li>
+          <li>- gets tinted with theme colors</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.</h2>
+      <h2>FloatingActionButton</h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:350px; right: 100px; top: 120px" src="images/designlib/fab.png" />
+      <ul>
+      	<li>just like a ImageButton</li>
+      	<li>big & small</li>
+      	<li>gets tinted with colorAccent</li>
+      </ul>
+      <br><br>
+      <div><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_plus"
+            app:fabSize="normal" /&gt;</pre>
+        </p></div></div>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- needs padding on 21+</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.</h2>
+      <h2>FloatingActionButton</h2>
+    </hgroup>
+    <article>
+      <ul>
+      	<li>supports elevation down to SDK 7 !!!</li>
+      </ul>
+      <img style="position: absolute; width:450px; left: 80px; top:350px" src="images/designlib/fab_4.png" />
+      <img style="position: absolute; width:450px; right: 80px; top:350px" src="images/designlib/fab_5.png" />
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- no official SpeedDial implementation</li>
+          <li>- lots of custom libs</li>
+          <li>- none fullfilled our needs</li>
+          <li>- figuring out how and when to release it</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>No offical SpeedDial</h2>
+    </hgroup>
+    <article>
+      <ul>
+      	<li>Jimdo to the rescue(!?) ;)</li>
+      	<li>Soon to be open source...</li>
+      </ul>
+      <img style="position: absolute; width:230px; left: 200px; top:300px" src="images/play.png" /> 
+      <img style="position: absolute; width:370px; right: 150px; top:40px" src="images/designlib/speeddial.gif" />
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- SnackBar: who eats Toasts (or Croutons) anyway?</li>
+          <li>- leightweight feedback at the bottom of the screen</li>
+          <li>- can contain a action</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.SnackBar</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>leightweight feedback</li>
+    	<li>can contain a Action</li>
+    </ul>
+    <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/snackbar.gif" />
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.SnackBar</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>Toast like interface</li>
+    </ul>
+    <br><br>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="java">
+        Snackbar
+        	.make(parentLayout, R.string.snackbar_text, Snackbar.LENGTH_LONG)
+  			.setAction(R.string.snackbar_action, myOnClickListener)
+  			.show(); // Don’t forget to show!</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- to be used with DrawerLayout</li>
+          <li>- separate header layout</li>
+          <li>- menu.xml</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.NavigationView</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>to be used with DrawerLayout</li>
+    	<li>supports seperate header layout</li>
+    	<li>supports known menu inflation</li>
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/navigationview.png" />
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.NavigationView</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;android.support.v4.widget.DrawerLayout
+        	   android:fitsSystemWindows="true" ... &gt;
+
+        	   &lt;android.support.design.widget.NavigationView
+        		      xmlns:app="http://schemas.android.com/apk/res-auto"
+        		      android:id="@+id/navigation_view"
+        		      android:layout_width="wrap_content"
+        		      android:layout_height="match_parent"
+        		      android:layout_gravity="start"
+        		      app:headerLayout="@layout/layout_navigation_view_header"
+        		      app:menu="@menu/navigation_view_items" /&gt;
+
+        &lt;/android.support.v4.widget.DrawerLayout/&gt;</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.NavigationView</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+           &lt;group android:checkableBehavior="single"&gt;
+              &lt;item
+                 android:id="@+id/navigation_item_1"
+                 android:checked="true"
+                 android:icon="@drawable/ic_action_grade"
+                 android:title="@string/navigation_item_1"/&gt;
+              ...
+           &lt;/group&gt;
+           &lt;item
+              android:id="@+id/navigation_subheader"
+              android:title="@string/navigation_subheader"&gt;
+           &lt;menu&gt;
+              &lt;item
+                 android:id="@+id/navigation_sub_item_1"
+                 android:icon="@drawable/ic_action_grade"
+                 android:title="@string/navigation_sub_item_1"/&gt;
+              ...</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.NavigationView</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="java">
+        public class NavigationViewActivity extends AppCompatActivity
+           implements NavigationView.OnNavigationItemSelectedListener {
+
+           @Override protected void onCreate(Bundle savedInstanceState) {
+              ...
+              NavigationView nv = (NavigationView) findViewById(R.id.navigation_view);
+              nv.setNavigationItemSelectedListener(this);
+           }
+
+           @Override public boolean onNavigationItemSelected(MenuItem menuItem) {
+              menuItem.setChecked(true);
+              ...
+              return true;
+           }
+        }</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- The Big one</li>
+          <li>- very powerful, but complex</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.CoordinatorLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>FrameLayout with super powers!</li>
+    	<li>coordinate interaction between<br>children by using Behaviors</li>
+    	<li>anchor views to each other</li>
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/coordinatorlayout.gif" />
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.CoordinatorLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>define which view depends on which and how to react when it changes</li>
+    </ul>
+    <ul>
+    	<li>a few available implementations:
+    	<ul>
+    		<li>AppBarLayout.ScrollingViewBehavior</li>
+    		<li>SwipeDismissBehavior</li>
+    	</ul>
+    	</li>
+    	<li>extend CoordinatorLayout.Behavior to build your own custom behaviors</li>
+    </ul>	 
+    </article>
+  </slide>
+
+<!-- 
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> </li>
+        </ul>
+      </section>
+    </aside>
+    <br><br><br><br><br><br><br>
+    <hgroup>
+      <h2>EXAMPLE: FloatingActionButton.Behavior</h2><br><br><br><br><br>
+      <h2>GOAL: translate the FAB so that it won't be covered by the SnackBar</h2>
+    </hgroup>
+    
+    
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- a simple implementation</li>
+          <li>- layoutDependsOn(): called once during onLayout to find out which View depends on what</li>
+          <li>- onDependentViewChanged(): called when the dependency changes size/position, apply your changes here</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>EXAMPLE: FloatingActionButton.Behavior</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="java">
+        public class ExampleBehaviour extends Behavior<FloatingActionButton> {
+           @Override public boolean layoutDependsOn(CoordinatorLayout parent,
+              FloatingActionButton child, View dependency) {
+              return dependency instanceof Snackbar.SnackbarLayout;
+           }
+
+           @Override
+           public boolean onDependentViewChanged(CoordinatorLayout parent,
+              FloatingActionButton child, View dependency) {
+              if (dependency instanceof Snackbar.SnackbarLayout) {
+                 float dependencyTranslationY = ViewCompat.getTranslationY(dependency);
+                 float translationY = Math.min(0, dependencyTranslationY
+                    - dependency.getHeight());
+                 ViewCompat.animate(child).translationY(translationY);
+                 return true;
+              }
+              return false;
+           }... }</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- layoutDependsOn(): called once during onLayout to find out which View depends on what</li>
+          <li>- onDependentViewChanged(): called when the dependency changes size/position, apply your changes here</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>EXAMPLE: FloatingActionButton.Behavior</h2>
+    </hgroup>
+    <article>
+    	<ul>
+    		<li>Annotate your custom view with</li>
+    	</ul>
+    	<pre class="prettyprint" data-lang="java">
+        @Defaultbehavior(ExampleBehavior.class)</pre>
+      	<ul>
+    		<li>Annotate your custom view with</li>
+    	</ul>
+    	<pre class="prettyprint" data-lang="java">
+        @Defaultbehavior(ExampleBehavior.class)</pre>
+    </article>
+  </slide> -->
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- The Big one</li>
+          <li>- very powerful, but complex</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>Helps implementing AppBar related animations</li>
+    	<li>scrolling widget must implement NestedScrollingChild, f.e.:
+    	<ul>
+    		<li>RecyclerView</li>
+    		<li>NestedScrollView</li>
+    	</ul>
+    	</li>
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/appbarlayout.png" />
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- a simple implementation</li>
+          <li>- layoutDependsOn(): called once during onLayout to find out which View depends on what</li>
+          <li>- onDependentViewChanged(): called when the dependency changes size/position, apply your changes here</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.widget.AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <div><div><p>
+        <pre class="prettyprint" data-lang="layout.xml">
+        &lt;android.support.design.widget.CoordinatorLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"&gt;
+
+           &lt;android.support.v7.widget.RecyclerView
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              android:id="@+id/recyler_view" ... /&gt;
+
+           &lt;android.support.design.widget.AppBarLayout
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"&gt;
+
+              &lt;android.support.v7.widget.Toolbar
+                 app:layout_scrollFlags="scroll|enterAlways" ... /&gt;
+
+           &lt;/android.support.design.widget.AppBarLayout&gt;
+        &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+        </p></div></div>
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- The Big one</li>
+          <li>- very powerful, but complex</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li><b>enterAlways</b></li>
+		<li>any downward scroll will make<br>the view become visible again</li>
+		<li>"Quick return pattern"</li>    	
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/appbarlayout.gif" />
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li><b>enterAlwaysCollapsed</b></li>
+		<li>only reexpand when scrolling view<br>has reached it's top</li>
+		
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/enterAlwaysCollapsed.gif" />
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.design.<br>widget.AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li><b>exitUntilCollapsed</b></li>
+		<li>scroll off until minHeight is reached</li>
+		
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/exitUntilCollapsed.gif" />
+      
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>android.support.<br>design.widget.<br>CollapsingToolbarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+    	<li>to be used inside AppBarLayout</li>
+		<li>wraps a Toolbar</li>
+		<li>applies animations to it's children:
+			<ul>
+				<li>title translation/scaling</li>
+				<li>fading</li>
+				<li>parallax scrolling</li>
+			</ul>
+		</li>
+    </ul>
+    <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/collapsingtoolbarlayout.gif" />
+      
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Examples</h2>
+    </hgroup>
+    <article>
+    <br><br><br>
+    <ul>
+    	<li>official demo app by Google (Chris Banes)</li>
+		<li><a href="https://github.com/chrisbanes/cheesesquare">github.com/chrisbanes/cheesesquare</a></li>
+    </ul>
+    <br><br><br>
+    <ul>
+    	<li>Demo App by Patrice Müller (GDG Zürich)</li>
+		<li><a href="https://github.com/swissonid/android-design-support-lib-sample">github.com/swissonid/android-design-support-lib-sample</a></li>
+    </ul>   
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>References & Apprecistions</h2>
+    </hgroup>
+    <article>
+    <br><br>
+    <ul>
+      <li>Introducing the Android Design Support Library by Riccardo Ciovati (GDG Milano)</li>
+    <li><a href="https://goo.gl/VztkyW">goo.gl/VztkyW</a></li>
+    </ul>
+    <br><br>
+    <ul>
+      <li>Android Developers blog post</li>
+    <li><a href="http://goo.gl/xgDTWh">goo.gl/xgDTWh</a></li>
+    </ul>   
+    <br><br>
+    <ul>
+      <li>"Codelab for Android Design Support Library used in I/O Rewind Bangkok session" by nuuneoi (Android GDE)</li>
+    <li><a href="http://goo.gl/Oy6fyV">goo.gl/Oy6fyV</a></li>
+    </ul>  
+    </article>
+  </slide>
+
+
+
+
+
+
+  
+
+  <slide class="thank-you-slide segue nobackground">
+    <!-- <aside class="gdbar right"><img src="images/gdg-bremen/GDG_Bremen_Q4.png"></aside> -->
+    <aside class="gdbar right"><img src="images/gdg-hamburg-android/GDG_Android Hamburg_280_square.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thanx!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/gdg-hamburg-android/GDG_Android Hamburg_800.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script> -->
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
