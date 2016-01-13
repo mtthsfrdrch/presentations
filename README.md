@@ -1,8 +1,8 @@
 ## Presentations
 This repository acts as hosting space for my presentation slides.
+
 Most of the presentations are based on: https://code.google.com/p/io-2012-slides/
 
-The repository contains the following slides:
 
 ### Tech talks:
 - [2015/08 SupportDesignLib @ GDG HH Android](http://mtthsfrdrch.github.io/presentations/2015_08_GDG_Hamburg_SupportDesignLib/template.html)
