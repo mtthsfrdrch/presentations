@@ -1,0 +1,968 @@
+<!--
+Slides were created by GDG Bremen Members.
+
+It uses the Google IO 2013 HTML5 Slides:
+
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Are you coordinating already?</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-2.1.8.min.js"></script>
+
+   <!-- Social: Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@androidhh">
+    <meta name="twitter:title" content="Are you coordinating already?">
+    <meta name="twitter:image:src" content="images/coord/coordinator_droid.png">
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:title" content="Are you coordinating already?" />
+    <meta property="og:site_name" content="Are you coordinating already?" />
+    <meta property="og:image" content="images/coord/coordinator_droid.png" />
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <img style="position: absolute; width:800px; height:400px; left: 150px; bottom: 0px" src="images/droidcon_vie/droidcon_vie_intro.png">
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- ConstraintLayout</li>
+          <li>- not talking about that</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.constraint.</font>ConstraintLayout</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <img style="position: absolute; width:550px; left: 275px; top: 100px" src="images/constraintlayout.png" />
+        <img style="position: absolute; width:750px; left: 175px; top: 10px" src="images/cross.png" />
+      </div>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/coord/coordinator_droid_head_dark.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+	  <p data-config-contact-dark></p>
+
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>thats me, in my Google I/O cameo outfit</li>
+          <li>as you can see i'm quiete enthuasiastic about Android</li>
+          <li>Android Developer @ Jimdo</li>
+          <li>founded... </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+
+    </hgroup>
+    <article>
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 130px; top: 70px" src="images/cape.jpg">
+      <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 480px; top: 155px; width: 150px" src="images/GDG_Bremen.png">
+            <img style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 660px; top: 130px; width: 250px" src="images/gdg-hamburg-android/GDG_Android%20Hamburg_280_square.png">
+      <br>
+      <br>
+      <ul style="transform:rotate(8deg);
+            -ms-transform:rotate(8deg);
+            -webkit-transform:rotate(8deg); position: absolute; left: 440px; top: 320px" src="images/cape.jpg">
+        <li><b>Matthias Friedrich</b></li>
+        <li>Android Developer @ Jimdo</li>
+        <li>Cofounder/-organizer<br> GDG Bremen/GDG Hamburg Android</li>
+        <li><a href="http://twitter.com/peacei">@mtthsfrdrch</a><li>
+        <li><a href="http://google.com/+MatthiasFriedrich">google.com/+MatthiasFriedrich</a></li>
+      </ul>
+  </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- don't want to get too much into details here
+          <li>- what makes your App look nice, what makes it beautiful</li>
+          <li>- just with this your screenshots look great!</li>
+          <li>- but users tend to interact with apps</li>
+          <li>- so really good UX needs more!</li>
+          <li>- thats why...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Material principles</h2>
+    </hgroup>
+    <article>
+      <div class="auto-fadein">
+        <div>
+          <img style="position: absolute; left: 120px; top: 150px" src="images/material/material_metaphor.png" />
+          <div style="position: absolute; left: 190px; top: 550px">Material metaphor</div>
+          <img style="position: absolute; right: 120px; top: 150px" src="images/material/bold_graphics.png" />
+          <div style="position: absolute; right: 150px; top: 550px">Bold, graphic, intentional</div>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide class="seguebigbar dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- 3rd principle, what makes material, material</li>
+          <li>- makes it behave like user expects it to</li>
+          <li>- key giveaway on what makes a high quality app</li>
+          <li>- catch: animations can be distracting</li>
+          <li>- every animation should have a reason/purpose, pure eye candy is no reason!</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="bigbar"><img src="images/material/motion.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2 style="color:white">Meaningful Motion</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- what can animations do? what meaning?</li>
+          <li>- ForshAct: user can guess how something will behave</li>
+          <li>- DistFrLoad: screen transition, prevent empty screen, loading spinner</li>
+          <li>- CommuniHirar: when one view disappears behind another</li>
+          <li>- GuiFoc: ...and with that point the user to the most important on the new screen</li>
+          <li>- one really helpful Component to build motion is...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Meaningful Motion</h2>
+    </hgroup>
+    <!-- <aside class="bigbar"><img src="images/material/motion.png" /></aside> -->
+
+    <article class="bigger">
+      <img style="position: absolute; left: 123px; top: 135px" src="images/material/motion.png" />
+      <!-- <img style="position: absolute; left: 110px; top: 180px" src="images/material/motion.png" /> -->
+      <div class="auto-fadein">
+
+        <div style="position: absolute; left: 510px; top: 240px">
+          <ul class="build">
+            <li>Foreshadow actions</li>
+            <li>Distract from loading</li>
+            <li>Communicate hierarchy</li>
+            <li>Guide focus</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- DE: impose addtional features on views</li>
+          <li>- OR: let child views play togeher</li>
+          <li>- technically: "EventBus" for View events</li>
+          <li>- official documentation...</li>
+          <li>- behaves like FE, when don't use super powers</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>CoordinatorLayout</h2>
+    </hgroup>
+    <article class="bigger">
+      <div class="build">
+        <ul>
+          <li>Decorator</li>
+        </ul>
+        <ul>
+          <li>Orchestrator</li>
+        </ul>
+        <div>
+          <q style="position:absolute; left: 100px; top:420px">… a <font color="red" style="font-size:45px">super-powered</font><br>FrameLayout</q>
+          <img style="position: absolute; width:480px; left: 570px; top:270px" src="images/coord/coordinator_droid.png" />
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li> - first super power</li>
+          <li>- simple "behavioral" connection</li>
+          <li>- via code</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>CoordinatorLayout</h2>
+      <h3>Anchoring</h3>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:497px; right: 50px; top: -555px" src="images/N6P_frame.png" />
+      <img style="position: absolute; width:390px; right: 105px; top: -467px" src="images/coord/anchored_fab.gif" />
+      <div class="build" style="position: absolute; top: 315px; width:952px;"><div><p class="build">
+      <div><pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            &lt;BottomSheet
+              <b>android:id="@+id/bottomSheet"</b> .../&gt;
+
+            &lt;android.support.design.widget.FloatingActionButton
+              <b>app:layout_anchor="@id/bottomSheet"
+              app:layout_anchorGravity="top|right"</b> .../&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+      </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- nesting the AnchorView</li>
+          <li>- (AnchorView in another child view)</li>
+          <li>- anchorView doesn't need to be direct child</li>
+          <li>- "simple" super power</li>
+          <li>- "more complex" super power...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>CoordinatorLayout</h2>
+      <h3>Anchor - nesting</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            <b>&lt;LinearLayout ...&gt;
+              &lt;FrameLayout
+                android:id="@+id/anchorView" .../&gt;
+            &lt;/LinearLayout&gt;</b>
+
+            &lt;android.support.design.widget.FloatingActionButton
+              <b>app:layout_anchor="@id/anchorView"</b>
+              app:layout_anchorGravity="top|right" ...&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- ... since v24.2.0</li>
+          <li>- FAB cannot be anchored to indirect children</li>
+          <li> ...</li>
+          <li>- "simple" super power</li>
+          <li>- "more complex" super power...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>CoordinatorLayout</h2>
+      <h3>Anchor - nesting</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            <b>&lt;LinearLayout ...&gt;
+              &lt;FrameLayout
+                android:id="@+id/anchorView" .../&gt;
+            &lt;/LinearLayout&gt;</b>
+
+            <b><strike>&lt;android.support.design.widget.FloatingActionButton</strike> (v24.2.0)</b>
+            &lt;Button
+              <b>app:layout_anchor="@id/anchorView"</b>
+              app:layout_anchorGravity="top|right" ...&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- Plugin, that gets applied to child views</li>
+          <li>- "EventBus -> Event-Subscription</li>
+          <li>- listen for ui related events</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><font color="#797979" style="font-size:38px">CoordinatorLayout.</font><br>Behavior</h2>
+    </hgroup>
+    <article class="bigger">
+      <p>Plugin for child views of CoordinatorLayout, intercepts:</p>
+      <ul class="build">
+        <li>View's Measurement</li>
+        <li>View's Layouting</li>
+        <li>View's Touch events</li>
+        <li>"Neighbour"-View's Size/Position-changes</li>
+        <li>Window Insets</li>
+        <li>Nested Scrolling</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- one Behavior per child View</li>
+          <li>- kept in layout params</li>
+          <li>- CoordLayt: dependency Order</li>
+          <li>- 3 ways to apply Behavior on views</li>
+          <li>- behavior params...</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><font color="#797979" style="font-size:38px">CoordinatorLayout.</font><br>Behavior</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            &lt;MyView
+              <b>app:layout_behavior=".MyCustomBehavior"</b> .../&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+
+        <pre class="prettyprint" data-lang="java">
+          <b>@CoordinatorLayout.DefaultBehavior(MyBehavior.class)</b>
+          public class MyView extends View { ...</pre>
+
+        <pre class="prettyprint" data-lang="java">
+          (<b>(CoordinatorLayout.LayoutParams)</b> myView
+            .getLayoutParams()).<b>setBehavior(new MyBehavior())</b></pre>
+      </div>
+    </article>
+  </slide>
+
+  <!-- <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- behavior params</li>
+          <li>- like layout params</li>
+          <li>- constructors</li>
+          <li>- naming convention</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><font color="#797979" style="font-size:38px">CoordinatorLayout.</font><br>Behavior</h2>
+      <h3>Behavior Params</h3>
+    </hgroup>
+    <article>
+      <div style="position: absolute; top: 160px; width:980px;"><div><p class="build">
+        <pre class="prettyprint" data-lang="java">
+          public class MyCustomBehavior extends Behavior&lt;View&gt; {
+            public MyCustomBehavior() { ... }
+            public MyCustomBehavior(Context context, <b>AttributeSet attrs</b>) {
+              TypedArray a = context.obtainStyledAttributes(attrs,
+                <b>R.styleable.MyCustomBehavior_Params</b>);
+              myParamValue(a.getDimensionPixelSize(
+                <b>R.styleable.MyCustomBehavior_Params_behavior_myParam</b>, 0));
+            }}</pre>
+
+        <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+            &lt;MyView ...
+              app:layout_behavior=".MyCustomBehavior"
+              <b>app:behavior_myParam="..."</b> /&gt;
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+      </p></div></div>
+    </article>
+  </slide> -->
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- Behaviors are typed</li>
+          <li>- specific: so it just can be used with your custom View</li>
+          <li>- generic: so it can be used with any View</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><font color="#797979" style="font-size:38px">CoordinatorLayout.</font><br>Behavior</h2>
+      <h3>Behavior Typing</h3>
+    </hgroup>
+    <article>
+      <div class="build">
+        <pre class="prettyprint" data-lang="java">
+          public class MyCustomBehavior <b>extends Behavior&lt;MyView&gt;</b> {
+            ...
+          }</pre>
+
+        <pre class="prettyprint" data-lang="java">
+          public class MyCustomBehavior<b>&lt;V extends View&gt;</b>
+              <b>extends Behavior&lt;V&gt;</b> {
+            ...
+          }</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>-example: neighbour view changes</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>FloatingActionButton.Behavior</h2>
+      <h3>Example: Listening for "Neighbour"-View changes</h3>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>
+        <img style="position: absolute; width:390px; left: 350px; top: 280px" src="images/coord/window_gradient.gif" />
+        <img style="position: absolute; width:390px; left: 350px; top: 350px" src="images/coord/snackbar_fab_cutted.gif" />
+      </div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- directly from the DesignLib</li>
+          <li>- typed</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>FloatingActionButton.Behavior</h2>
+      <h3>Example: Listening for "Neighbour"-View changes</h3>
+    </hgroup>
+    <article>
+      <div>
+        <pre class="prettyprint" data-lang="java">
+public static <b>class Behavior extends
+    CoordinatorLayout.Behavior&lt;FloatingActionButton&gt;</b> {
+  ...
+
+  @Override
+  public <b>boolean layoutDependsOn(CoordinatorLayout parent,
+      FloatingActionButton child, View dependency) {</b>
+        return SNACKBAR_BEHAVIOR_ENABLED
+          && <b>dependency instanceof Snackbar.SnackbarLayout</b>;
+  }
+
+  ...
+}</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>FloatingActionButton.Behavior</h2>
+      <h3>Example: Listening for "Neighbour"-View changes</h3>
+    </hgroup>
+    <article>
+      <div>
+<pre class="prettyprint" data-lang="java">
+@Override
+public <b>boolean onDependentViewChanged(CoordinatorLayout parent,
+      FloatingActionButton child, View dependency) {</b>
+
+  <b>if (dependency instanceof Snackbar.SnackbarLayout) {
+      updateFabTranslationForSnackbar(parent, child, dependency);</b>
+
+  } else if (dependency instanceof AppBarLayout) {
+      updateFabVisibility(parent, (AppBarLayout) dependency, child);
+  }
+
+  return false;
+}</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MaxWidthBehavior</h2>
+      <h3>Example: Intercepting Measurement</h3>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>
+          <img style="position: absolute; width:420px; right: 60px; top: 86px" src="images/coord/window_gradient.gif" />
+          <img style="position: absolute; width:420px; right: 60px; top: 165px" src="images/coord/maxWidth_phone.png" />
+        </div>
+        <div>
+          <img style="position: absolute; width:980px; right: 60px; top: 330px" src="images/coord/window_gradient.gif" />
+          <img style="position: absolute; width:980px; left: 60px; top: 500px" src="images/coord/maxWidth_tablet.png" />
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- behavior params</li>
+          <li>- like layout params</li>
+          <li>- naming convention</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MaxWidthBehavior</h2>
+      <h3>Example: Intercepting Measurement</h3>
+    </hgroup>
+    <article>
+      <div>
+        <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            &lt;android.support.v7.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="56dp"
+              android:layout_gravity="center|bottom"
+              ...
+              <b>app:behavior_maxWidth="600dp"
+              app:layout_behavior=".MaxWidthBehavior"</b> /&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- extend Behavior and type for View</li>
+          <li>- read behavior params</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MaxWidthBehavior</h2>
+      <h3>Example: Intercepting Measurement</h3>
+    </hgroup>
+    <article>
+      <div>
+        <div style="position: absolute; top: 120px; width:980px;"><div><p class="build">
+        <pre class="prettyprint" data-lang="java">
+public <b>class MaxWidthBehavior extends CoordinatorLayout.Behavior&lt;View&gt;</b> {
+
+  private int maxWidth;
+
+  public MaxWidthBehavior(Context context, AttributeSet attrs) {
+    super(context, attrs);
+
+    TypedArray a = context.obtainStyledAttributes(attrs,
+            R.styleable.MaxWidthBehavior_Params);
+    mMaxWidth = a.getDimensionPixelSize(
+            R.styleable.MaxWidthBehavior_Params_behavior_maxWidth, 0);
+    a.recycle();
+  }
+
+  ...</pre></p></div</div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- overwrite onMeasureChild</li>
+          <li>- called when child gets measured</li>
+          <li>- compare width, act accordingly</li>
+          <li>- performance critical</li>
+          <li>- margins/paddings</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MaxWidthBehavior</h2>
+      <h3>Example: Intercepting Measurement</h3>
+    </hgroup>
+    <article>
+      <div>
+        <div style="position: absolute; top: 120px; width:980px;"><div><p class="build">
+        <pre class="prettyprint" data-lang="java">
+@Override
+public <b>boolean onMeasureChild(CoordinatorLayout parent, V child,
+          int parentWidthMeasureSpec, int widthUsed,
+          int parentHeightMeasureSpec, int heightUsed) {</b>
+  int width = View.MeasureSpec.getSize(parentWidthMeasureSpec);
+
+  if (width > mMaxWidth) {
+    width = mMaxWidth;
+    int widthMode = View.MeasureSpec.EXACTLY;
+    <b>parent.onMeasureChild(child,
+        View.MeasureSpec.makeMeasureSpec(width, widthMode), widthUsed,
+        parentHeightMeasureSpec, heightUsed);</b>
+    <b>return true;</b>
+  }
+
+  <b>return false;</b>
+}</pre></p></div</div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+      <h3>Example: Intercepting Nested Scrolling</h3>
+    </hgroup>
+    <article class="bigger">
+      <ul>
+        <li>implements AppBar<br>related animations</li>
+        <li>just works inside<br>CoordinatorLayout</li>
+      </ul>
+        <img style="position: absolute; width:370px; right: 110px; top: 40px" src="images/designlib/appbarlayout.gif" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- AppBarLayout wraps Toolbar</li>
+          <li>- Behavior on scrolling view</li>
+          <li>- scrollFlag on Toolbar</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+    </hgroup>
+    <article>
+      <div><div><p>
+          <pre class="prettyprint" data-lang="layout.xml">
+          &lt;android.support.design.widget.CoordinatorLayout ...&gt;
+
+            <b>&lt;android.support.design.widget.AppBarLayout</b>
+               android:layout_height="wrap_content"
+               android:layout_width="match_parent"&gt;
+
+               &lt;android.support.v7.widget.Toolbar
+                  <b>app:layout_scrollFlags="scroll|enterAlways"</b> ... /&gt;
+
+            &lt;/android.support.design.widget.AppBarLayout&gt;
+
+            &lt;android.support.v7.widget.RecyclerView
+                <b>app:layout_behavior="@string/appbar_scrolling_view_behavior"</b> .../&gt;
+
+          &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+          </p></div></div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+    </hgroup>
+    <article>
+      <ul>
+          <li><code>app:layout_scrollFlags=<br>"enterAlways"</code></li>
+        <li>any downward scroll will make<br>the view become visible again</li>
+        <li>"Quick return pattern"</li>
+        </ul>
+          <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/appbarlayout.gif" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+    </hgroup>
+    <article>
+      <div><div><p>
+      <ul>
+        <li><code>app:layout_scrollFlags=<br>"enterAlwaysCollapsed</code>"</li>
+      <li>only reexpand when scrolling view<br>has reached it's top</li>
+
+      </ul>
+        <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/enterAlwaysCollapsed.gif" />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- lots of magic</li>
+          <li>- how does it work internally?</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+      <li><code>app:layout_scrollFlags=<br>"exitUntilCollapsed</code></li>
+    <li>scroll off until minHeight<br>is reached</li>
+
+    </ul>
+      <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/exitUntilCollapsed.gif" />
+
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>AppBarLayout</h2>
+    </hgroup>
+    <article>
+      <img style="position: absolute; width:900px; left: 100px; top: 60px" src="images/coord/appbar_behaviors.png" />
+
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- </li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2><font color="#a9a9a9" style="font-size:34px">android.</font><font color="#797979" style="font-size:38px">support.design</font><font color="#a9a9a9" style="font-size:34px">.widget.</font><br>CollapsingToolbarLayout</h2>
+    </hgroup>
+    <article>
+    <ul>
+      <li>to be used inside AppBarLayout</li>
+    <li>wraps a Toolbar</li>
+    <li>applies animations to it's children:
+      <ul>
+        <li>title translation/scaling</li>
+        <li>fading</li>
+        <li>parallax scrolling</li>
+      </ul>
+    </li>
+    </ul>
+    <img style="position: absolute; width:370px; right: 150px; top: 40px" src="images/designlib/collapsingtoolbarlayout.gif" />
+
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- reacting to the View the behavior is applied to</li>
+          <li>- f.e. MaxWidthBehavior</li>
+          <li>-</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>More Behavior callbacks</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <pre class="prettyprint" data-lang="java">
+
+          @Overwrite
+          public boolean onLayoutChild(CoordinatorLayout parent,
+                V child, int layoutDirection) { ... }
+
+          @Overwrite
+          public WindowInsets onApplyWindowInsets(
+                CoordinatorLayout coordinatorLayout, V child,
+                WindowInsetsCompat insets) { ... }</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>More useful stuff</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        </ul>
+          <li><code>BottomSheetBehavior</code> (Intercepts Touch Events & Nested Scrolling)</li>
+          <li><code>SwipeDismissBehavior</code> (Intercepts Touch Events)</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>- ! wouldn't work without it</li>
+          <li>- "special/not straigt forward" impls</li>
+          <li>- ! View connections/enrichment, without extending classes or writing complex listeners</li>
+          <li>- ! disconnected/standalone implementations: Behaviors</li>
+          <li>- no cluttering of activity/fragment/view code</li>
+          <li>- ! applyable/configurable just by xml/layouts</li>
+          <li>- ! take a look at behavior implementations in design lib</li>
+          <li>- ! stay for next talk: "A Window into transitions"
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Roundup</h2>
+    </hgroup>
+    <article>
+
+      <div style=" width:580px;">
+        <ul class="build">
+          <li>CoordinatorLayout is the core of Support Design Lib</li>
+          <li>Powerful framework</li>
+          <li>Standalone/Disconnected impls: Behaviors</li>
+          <li>no Activity/Fragment/View code-cluttering</li>
+          <li>easily configurable via layout.xml</li>
+          <li>learn from default impls in Design Lib</li>
+          <li>possible Raceconditions together with screen transitions</li>
+      </div>
+      <img style="position: absolute; width:480px; left: 570px; top:270px" src="images/coord/coordinator_droid.png" />
+    </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <!-- <aside class="gdbar right"><img src="images/gdg-bremen/GDG_Bremen_Q4.png"></aside> -->
+    <aside class="gdbar right"><img src="images/coord/coordinator_droid_head_dark.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thanx!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide nobackground">
+    <img style="position: absolute; width:800px; height:400px; left: 150px; bottom: 0px" src="images/droidcon_vie/droidcon_vie_intro.png">
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49240712-5', 'auto');
+  ga('send', 'pageview');
+
+</script> -->
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
